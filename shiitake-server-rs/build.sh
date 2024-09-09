@@ -1,0 +1,1 @@
+cargo build --release --target arm-roborio-linux-gnueabi -Z build-std=std,panic_abort

@@ -1,0 +1,111 @@
+<html data-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <header id="header" style="padding-bottom: 0%; margin-bottom: 0%;">
+        <div>
+            <h1 style="padding-bottom: 0%; margin-bottom: 0%;">
+                Shiitake Webservices
+            </h1>
+            <h6 id="metadata">Metadata not found</h6>
+            <p id="uptime">Uptime: 0s</p>
+            <hr style="padding-bottom: 0%; margin-bottom: 0%;">
+        </div>
+    </header>
+
+    <main style="padding-top: 0%; margin-top: 0%;">
+        <article id="sys-summary">
+            <header style="padding-bottom: 5%; margin-bottom: 2%;">
+                <h2 style="padding-bottom: 0%; margin-bottom: 0%;">
+                    System Summary
+                </h2>
+            </header>
+            <h6 id="hostname" style="margin-bottom: 0%; padding-bottom: 0%;">Hostname: "Unknown"</h6>
+            <hr style="padding-bottom: 1%;">
+            <h6 id="os" style="margin-bottom: 0%; padding-bottom: 0%;">OS: "Unknown"</h6>
+            <hr style="padding-bottom: 1%;">
+            <h6 id="cpu-cores" style="margin-bottom: 0%; padding-bottom: 0%;">Cores: 0</h6>
+            <hr style="padding-bottom: 1%;">
+            <h6 id="total-memory" style="margin-bottom: 0%; padding-bottom: 0%;">Total Memory: 0</h6>
+        </article>
+
+        <article id="sys-rsrcs">
+            <header style="padding-bottom: 5%; margin-bottom: 2%;">
+                <h2 style="padding-bottom: 0%; margin-bottom: 0%;">
+                    System Resources
+                </h2>
+            </header>
+            <h6 id="cpu-speed" style="margin-bottom: 0%; padding-bottom: 0%;">CPU Speed: N/A</h6>
+            <hr style="padding-bottom: 1%;">
+            <details id="cpu-usage" rsrc="cpuUsage">
+                <summary>
+                    <h6 id="cpu-usage-text">CPU Usage: N/A</h6>
+                    <progress id="cpu-usage-bar" value="25" max="100"></progress>
+                </summary>
+                <div id="cpu-usage-graph"></div>
+            </details>
+            <details id="memory-usage" rsrc="memoryUsage">
+                <summary>
+                    <h6 id="memory-usage-text">Memory Usage: N/A</h6>
+                    <progress id="memory-usage-bar" value="25" max="100"></progress>
+                </summary>
+                <div id="memory-usage-graph"></div>
+            </details>
+        </article>
+
+        <article id="sys-processes">
+            <header style="padding-bottom: 5%; margin-bottom: 2%;">
+                <h2 style="padding-bottom: 0%; margin-bottom: 0%;">
+                    System Processes
+                </h2>
+            </header>
+
+            <table id="processes-table" role="grid">
+                <thead>
+                    <tr>
+                        <th scope="col" id="pid-sort-button">PID</th>
+                        <th scope="col" id="name-sort-button">Name</th>
+                        <th scope="col" id="cpu-sort-button">CPU Usage</th>
+                        <th scope="col" id="mem-sort-button">Memory Usage</th>
+                    </tr>
+                </thead>
+                <tbody id="processes-table-data">
+                    <tr>
+                        <td>0</td>
+                        <td>Unknown</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </main>
+
+    <!-- <button id="preferences-button" aria-label="Open up preferences" data-target="preferences-menu">
+        Preferences
+    </button>
+
+    <dialog id="preferences-menu">
+        <article>
+            <a href="#close" aria-label="Close" data-target="preferences-menu">
+            </a>
+            <h3>Preferences</h3>
+            <hr>
+            <form id="preferences-form">
+                <label for="primary-color">Primary Color
+                    <input type="color" id="primary-color" name="primary-color" value="#1095C1" />
+                </label>
+                <label for="theme-switch">
+                    <input type="checkbox" id="theme-switch" name="theme-switch" role="switch" />
+                    Dark Mode
+                </label>
+            </form>
+        </article>
+    </dialog> -->
+</body>
+
+</html>

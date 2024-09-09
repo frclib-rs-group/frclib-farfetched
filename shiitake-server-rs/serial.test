@@ -1,0 +1,12 @@
+{
+        "version":      1,
+        "oldest_compatible_version":    1,
+        "devices":      {
+                "Model=NI roboRIO;Serial=000000000306ADDC":     {
+                        "alias":        ""
+                },
+                "Model=NI roboRIO;Serial=00000000030DBD80":     {
+                        "alias":        ""
+                }
+        }
+}
