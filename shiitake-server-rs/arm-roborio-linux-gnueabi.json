@@ -1,0 +1,27 @@
+{
+  "abi": "eabi",
+  "arch": "arm",
+  "vendor": "roborio",
+  "crt-static-respected": true,
+  "data-layout": "e-m:e-p:32:32-Fi8-i64:64-v128:64:128-a:0:32-n32-S64",
+  "dynamic-linking": true,
+  "env": "gnu",
+  "features": "+strict-align,+v6",
+  "has-rpath": true,
+  "has-thread-local": true,
+  "llvm-target": "arm-roborio-linux-gnueabi",
+  "max-atomic-width": 64,
+  "os": "linux",
+  "position-independent-executables": true,
+  "relro-level": "full",
+  "supported-split-debuginfo": [
+    "packed",
+    "unpacked",
+    "off"
+  ],
+  "target-family": [
+    "unix"
+  ],
+  "target-mcount": "\u0001__gnu_mcount_nc",
+  "target-pointer-width": "32"
+}

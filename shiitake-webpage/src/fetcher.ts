@@ -19,11 +19,11 @@ export async function getProcesses(): Promise<shiitake.Processes | null> {
         try {
             const response = await shiitakeFetch(shiitake.PROCESSES_ROUTE);
             const json = await response.json();
+            console.log(json);
             let processes = [];
             for (let proc of json) {
                 processes.push(shiitake.Process.fromJson(proc));
             }
-            console.log(processes);
             return processes;
         } catch (reason) {
             console.error("shiitake fetch err" + reason);

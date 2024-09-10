@@ -58,14 +58,26 @@ pub fn measure_processes(system: &mut System) -> Processes {
             continue;
         }
 
-        let process = Process {
-            name: sys_process.exe().file_name().unwrap().to_string_lossy().to_string(),
-            cpu_usage: cpu_usage as f64 / cpu_count,
-            memory_usage,
-            pid: sys_pid.as_u32(),
-        };
-
-        processes.push(process);
+        match sys_process.exe().file_name() {
+            Some(name) => {
+                let process = Process {
+                    name: name.to_string_lossy().to_string(),
+                    cpu_usage: cpu_usage as f64 / cpu_count,
+                    memory_usage,
+                    pid: sys_pid.as_u32(),
+                };
+                processes.push(process);
+            },
+            None => {
+                let process = Process {
+                    name: "unknown".to_string(),
+                    cpu_usage: cpu_usage as f64 / cpu_count,
+                    memory_usage,
+                    pid: sys_pid.as_u32(),
+                };
+                processes.push(process);
+            }
+        }
     }
 
     processes

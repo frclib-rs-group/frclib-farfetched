@@ -6,6 +6,10 @@ function average(array: number[]) {
     return array.reduce((a, b) => a + b) / array.length;
 }
 
+function sum(array: number[]) {
+    return array.reduce((a, b) => a + b);
+}
+
 function formatHertz(hertz: number): string {
     if (hertz < 1000) {
         return `${(hertz).toFixed(2)} Hz`;
@@ -245,8 +249,8 @@ export async function updateProcesses() {
 
     let rsrcs = resourceManager.getLatest();
     if (rsrcs) {
-        let otherCpuUsage = average(rsrcs.cpuUsage) - accumulatedCpuUsage;
-        let otherMemoryUsage = rsrcs.memoryUsage - accumulatedMemoryUsage;
+        let otherCpuUsage = sum(processes.map(p => p.cpuUsage)) - accumulatedCpuUsage;
+        let otherMemoryUsage = sum(processes.map(p => p.memoryUsage)) - accumulatedMemoryUsage;
         tableHtml += `
             <tr>
                 <td>...</td>

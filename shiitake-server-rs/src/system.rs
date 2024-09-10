@@ -75,8 +75,9 @@ fn get_os() -> Result<String, ShiitakeError> {
     let file = std::fs::read_to_string(path)?;
 
     for line in file.lines() {
-        if line.starts_with("IMAGEVERSION=") {
-            return Ok(String::from(&line[13..]).replace("\"", ""));
+        let prefix = "IMAGEVERSION = ";
+        if line.starts_with(prefix) {
+            return Ok(String::from(&line[prefix.len()..]).replace("\"", ""));
         }
     }
 

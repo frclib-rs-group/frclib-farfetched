@@ -46,9 +46,9 @@ async fn main() {
             .init();
     }
 
-    // let addr = std::net::SocketAddr::from(([10, 64, 60, 53], 80));
+    let addr = std::net::SocketAddr::from(([0, 0, 0, 0], 80));
     //create addr of local host and port 80
-    let localhost_addr = std::net::SocketAddr::from(([127, 0, 0, 1], 80));
+    // let localhost_addr = std::net::SocketAddr::from(([127, 0, 0, 1], 80));
 
     let app = Router::new()
         .route(routes::ROOT, get(root))
@@ -62,11 +62,12 @@ async fn main() {
         .route(routes::SET_IP, post(set_static_ip))
         ;
 
-    thread_priority::set_current_thread_priority(thread_priority::ThreadPriority::Min).unwrap();
+    thread_priority::set_current_thread_priority(thread_priority::ThreadPriority::Min)
+        .expect("Failed to set thread priority");
 
     info!("Router made, starting server");
 
-    axum::Server::bind(&localhost_addr)
+    axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
         .expect("Server failed");
@@ -93,7 +94,8 @@ async fn system_summary() -> Json<Summary> {
 async fn get_time() -> String {
     use crate::types::timespec_to_hex;
 
-    let time_spec = nix::time::clock_gettime(nix::time::ClockId::CLOCK_REALTIME).unwrap();
+    let time_spec = nix::time::clock_gettime(nix::time::ClockId::CLOCK_REALTIME)
+        .expect("Failed to get time");
     //if pointer width is 32, then the timespec is 32 bits, otherwise it's 64
     #[cfg(target_pointer_width = "32")]
     {
@@ -115,7 +117,7 @@ async fn set_time(hex: String) -> &'static str {
             nix::time::ClockId::CLOCK_REALTIME,
             nix::sys::time::TimeSpec::new(decoded_timespec.0 as i32, decoded_timespec.1 as i32),
         )
-        .unwrap();
+        .expect("Failed to set time");
     }
     #[cfg(target_pointer_width = "64")]
     {
@@ -123,7 +125,7 @@ async fn set_time(hex: String) -> &'static str {
             nix::time::ClockId::CLOCK_REALTIME,
             nix::sys::time::TimeSpec::new(decoded_timespec.0, decoded_timespec.1),
         )
-        .unwrap();
+        .expect("Failed to set time");
     }
     "Time set"
 }
@@ -136,7 +138,8 @@ async fn reboot(verification: String) -> &'static str {
     if verification != crate::types::REBOOT_VERIFICATION {
         return "Verification string incorrect";
     }
-    nix::sys::reboot::reboot(nix::sys::reboot::RebootMode::RB_AUTOBOOT).unwrap();
+    nix::sys::reboot::reboot(nix::sys::reboot::RebootMode::RB_AUTOBOOT)
+        .expect("Failed to reboot");
     "Rebooting"
 }
 

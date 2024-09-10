@@ -68,7 +68,8 @@ fn swap_hex(hex_str: String) -> String {
     format!("{}{}", &hex_str[1..], &hex_str[..1])
 }
 fn comment_hex_to_int(hex_str: String) -> i64 {
-    i64::from_str_radix(&swap_hex(fix_comment_hex(hex_str)), 16).unwrap()
+    i64::from_str_radix(&swap_hex(fix_comment_hex(hex_str)), 16)
+        .expect("Failed to convert hex to int")
 }
 
 fn decode_comment(encoded_str: String) -> String {
@@ -122,7 +123,8 @@ impl RioData {
                 PathBuf::from("/etc/natinst/share/scs_imagemetadata.ini"),
                 "ImageMetadata",
                 "IMAGEVERSION",
-            )?.to_string().unwrap(),
+            )?.to_string()
+            .ok_or(RioDataError::CustomError("Failed to convert image version to string"))?,
         })
     }
 

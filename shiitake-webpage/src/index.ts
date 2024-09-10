@@ -9,13 +9,13 @@ let cycleCount = 0;
 async function cycle() {
     webpage.updateUptime();
     if (cycleCount % 20 == 0) {
-        webpage.updateResources();
+        await webpage.updateResources();
     }
     if (cycleCount % 60 == 0) {
-        webpage.updateProcesses();
+        await webpage.updateProcesses();
     }
     if (cycleCount % 100 == 0) {
-        webpage.updateSummary();
+        await webpage.updateSummary();
     }
 
     cycleCount++;

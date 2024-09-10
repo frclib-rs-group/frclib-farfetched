@@ -66,8 +66,10 @@ pub fn timespec_to_hex(seconds: i64, nanoseconds: i64) -> String {
 pub fn hex_to_timespec(hex: String) -> (i64, i64) {
     let split = hex.split(":");
     let mut split = split.into_iter();
-    let seconds = i64::from_str_radix(split.next().unwrap(), 16).unwrap();
-    let nanoseconds = i64::from_str_radix(split.next().unwrap(), 16).unwrap();
+    let seconds = i64::from_str_radix(split.next().expect("hex split was not long enough"), 16)
+        .expect("Failed to parse seconds from hex string");
+    let nanoseconds = i64::from_str_radix(split.next().expect("hex split was not long enough"), 16)
+        .expect("Failed to parse nanoseconds from hex string");
     (seconds, nanoseconds)
 }
 
